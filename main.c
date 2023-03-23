@@ -9,7 +9,7 @@ void clearscreen() {
 }
 
 int main(void) {
-    clearscreen();
+    //clearscreen();
     Shape *point = create_point_shape(2,2);
     print_shape(point);
     delete_shape(point);
@@ -29,6 +29,11 @@ int main(void) {
     Shape *square = create_square_shape(1,1,5);
     print_shape(square);
     delete_shape(square);
+
+    Point *points[2] = {create_point(1,1),create_point(6,5)};
+    Shape *polygon = create_polygon_shape(points,2);
+    print_shape(polygon);
+    delete_shape(polygon);
 
     return 0;
 }

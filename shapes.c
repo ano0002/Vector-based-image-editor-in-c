@@ -8,6 +8,7 @@
 #include "circle.h"
 #include "rectangle.h"
 #include "square.h"
+#include "polygon.h"
 
 int id = 0;
 
@@ -57,6 +58,13 @@ Shape *create_square_shape(int px, int py, int side){
     return shp;
 }
 
+Shape *create_polygon_shape(Point **points, int n){
+    Shape *shp = create_empty_shape(POLYGON);
+    Polygon *p = create_polygon(points,n);
+    shp->ptrShape = p;
+    return shp;
+}
+
 void print_shape(Shape *shape){
 
     printf("ID : %d, ",shape->id);
@@ -80,6 +88,10 @@ void print_shape(Shape *shape){
     else if (shape->shape_type == SQUARE)
     {
         print_square(shape->ptrShape);
+    }
+    else if (shape->shape_type == POLYGON)
+    {
+        print_polygon(shape->ptrShape);
     }
     printf("\n");
     
@@ -105,6 +117,10 @@ void delete_shape(Shape *shape){
     else if (shape->shape_type == SQUARE)
     {
         destroy_square(shape->ptrShape);
+    }
+    else if (shape->shape_type == POLYGON)
+    {
+        destroy_polygon(shape->ptrShape);
     }
     free(shape);
 }
