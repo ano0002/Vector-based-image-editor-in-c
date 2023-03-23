@@ -5,12 +5,16 @@
 
 #include "point.h"
 #include "line.h"
+#include "circle.h"
+
+
+int id = 0;
 
 Shape *create_empty_shape(SHAPE_TYPE shape_type)
 {
     Shape *shp = (Shape *) malloc(sizeof(Shape));
     shp->ptrShape = NULL;
-    shp->id = 1; // plus tard on appelera get_next_id();
+    shp->id = get_next_id();
     shp->shape_type = shape_type;
     return shp;
 }
@@ -31,26 +35,51 @@ Shape *create_line_shape(int px1, int py1, int px2, int py2)
     return shp;
 }
 
-void display_shape(Shape *shape){
+Shape *create_circle_shape(int px, int py, int radius){
+    Shape *shp = create_empty_shape(CIRCLE);
+    Circle *p = create_circle(px,py,radius);
+    shp->ptrShape = p;
+    return shp;
+}
+
+void print_shape(Shape *shape){
+
+    printf("ID : %d, ",shape->id);
+
     if (shape->shape_type == POINT)
     {
-        display_point(shape->ptrShape);
+        print_point(shape->ptrShape);
     }
     else if (shape->shape_type == LINE)
     {
-        display_line(shape->ptrShape);
+        print_line(shape->ptrShape);
     }
+    else if (shape->shape_type == CIRCLE)
+    {
+        print_circle(shape->ptrShape);
+    }
+    printf("\n");
     
 }
 
-int main(void){
-    Shape *point = create_point_shape(2,2);
-    display_shape(point);
-    destroy_point(point->ptrShape);
-    printf("\n");
-
-    Shape *line = create_line_shape(1,1,6,5);
-    display_shape(line);
-    destroy_line(line->ptrShape);
-
+void delete_shape(Shape *shape){
+    if (shape->shape_type == POINT)
+    {
+        destroy_point(shape->ptrShape);
+    }
+    else if (shape->shape_type == LINE)
+    {
+        destroy_line(shape->ptrShape);
+    }
+    else if (shape->shape_type == CIRCLE)
+    {
+        destroy_circle(shape->ptrShape);
+    }
+    free(shape);
 }
+
+int get_next_id(){
+    id ++;
+    return id;
+}
+

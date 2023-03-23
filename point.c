@@ -11,7 +11,7 @@ Point* create_point(int x, int y)
     return p;
 }
 
-void display_point(Point *p)
+void print_point(Point *p)
 {
     printf("Point: (%d, %d)", p->x, p->y);
 }

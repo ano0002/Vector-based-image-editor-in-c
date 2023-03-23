@@ -7,7 +7,7 @@ typedef struct {
 } Point;
 
 Point* create_point(int x, int y);
-void display_point(Point *p);
+void print_point(Point *p);
 void destroy_point(Point *p);
 
 

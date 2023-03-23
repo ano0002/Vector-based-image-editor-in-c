@@ -13,12 +13,13 @@ Line* create_line(int x1, int y1, int x2, int y2)
     return l;
 }
 
-void display_line(Line *l)
+void print_line(Line *l)
 {
-    printf("Line: ");
-    display_point(l->p1);
+    printf("Line: [");
+    print_point(l->p1);
     printf(" - ");
-    display_point(l->p2);
+    print_point(l->p2);
+    printf("]");
 }
 
 void destroy_line(Line *l)
