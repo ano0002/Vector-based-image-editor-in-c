@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "*.html": "html",
+        "point.h": "c",
+        "stdio.h": "c",
+        "shapes.h": "c"
+    }
+}

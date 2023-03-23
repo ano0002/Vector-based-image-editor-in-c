@@ -1,9 +1,9 @@
-#include "point.h"
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "point.h"
 
-Point* Create_Point(int x, int y)
+Point* create_point(int x, int y)
 {
     Point *p = malloc(sizeof(Point));
     p->x = x;
@@ -11,20 +11,12 @@ Point* Create_Point(int x, int y)
     return p;
 }
 
-void Draw_Point(Point *p)
+void display_point(Point *p)
 {
     printf("Point: (%d, %d)", p->x, p->y);
 }
 
-void Destroy_Point(Point *p)
+void destroy_point(Point *p)
 {
     free(p);
-}
-
-int main(void)
-{
-    Point *p = Create_Point(10, 20);
-    Draw_Point(p);
-    Destroy_Point(p);
-    return 0;
 }

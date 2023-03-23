@@ -6,8 +6,9 @@ typedef struct {
     int y;
 } Point;
 
-Point* Create_Point(int x, int y);
-void Draw_Point(Point *p);
+Point* create_point(int x, int y);
+void display_point(Point *p);
+void destroy_point(Point *p);
 
 
 #endif 

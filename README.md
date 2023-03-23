@@ -1,0 +1,1 @@
+cd ..;gcc shapes.c point.c -o ".\output\main.exe"; cd output; ./main.exe
