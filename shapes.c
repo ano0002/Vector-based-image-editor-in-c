@@ -6,7 +6,8 @@
 #include "point.h"
 #include "line.h"
 #include "circle.h"
-
+#include "rectangle.h"
+#include "square.h"
 
 int id = 0;
 
@@ -42,6 +43,20 @@ Shape *create_circle_shape(int px, int py, int radius){
     return shp;
 }
 
+Shape *create_rectangle_shape(int px, int py, int width, int height){
+    Shape *shp = create_empty_shape(RECTANGLE);
+    Rectangle *p = create_rectangle(px,py,width,height);
+    shp->ptrShape = p;
+    return shp;
+}
+
+Shape *create_square_shape(int px, int py, int side){
+    Shape *shp = create_empty_shape(SQUARE);
+    Square *p = create_square(px,py,side);
+    shp->ptrShape = p;
+    return shp;
+}
+
 void print_shape(Shape *shape){
 
     printf("ID : %d, ",shape->id);
@@ -57,6 +72,14 @@ void print_shape(Shape *shape){
     else if (shape->shape_type == CIRCLE)
     {
         print_circle(shape->ptrShape);
+    }
+    else if (shape->shape_type == RECTANGLE)
+    {
+        print_rectangle(shape->ptrShape);
+    }
+    else if (shape->shape_type == SQUARE)
+    {
+        print_square(shape->ptrShape);
     }
     printf("\n");
     
@@ -74,6 +97,14 @@ void delete_shape(Shape *shape){
     else if (shape->shape_type == CIRCLE)
     {
         destroy_circle(shape->ptrShape);
+    }
+    else if (shape->shape_type == RECTANGLE)
+    {
+        destroy_rectangle(shape->ptrShape);
+    }
+    else if (shape->shape_type == SQUARE)
+    {
+        destroy_square(shape->ptrShape);
     }
     free(shape);
 }

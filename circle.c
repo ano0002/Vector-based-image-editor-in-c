@@ -12,9 +12,9 @@ Circle* create_circle(int x, int y, int radius){
 }
 
 void print_circle(Circle *circle){
-    printf("Circle: center = [" );
+    printf("Circle: [" );
     print_point(circle->center);
-    printf("], radius = %d", circle->radius);
+    printf(" - radius = %d]", circle->radius);
 }
 
 void destroy_circle(Circle *circle){

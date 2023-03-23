@@ -21,5 +21,14 @@ int main(void) {
     Shape *circle = create_circle_shape(1,1,5);
     print_shape(circle);
     delete_shape(circle);
+
+    Shape *rectangle = create_rectangle_shape(1,1,5,5);
+    print_shape(rectangle);
+    delete_shape(rectangle);
+
+    Shape *square = create_square_shape(1,1,5);
+    print_shape(square);
+    delete_shape(square);
+
     return 0;
 }
