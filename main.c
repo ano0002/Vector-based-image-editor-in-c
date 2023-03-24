@@ -14,7 +14,7 @@ void clearscreen() {
 
 int main(void) {
     Shape **L = malloc(1*sizeof(Shape*));
-    L[0] = create_point_shape(1,1);
+    L[0] = create_line_shape(1,1,3,5);
     int LS = 1;
     int i = input();
     while (i != 0)
