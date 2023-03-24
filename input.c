@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 #include "input.h"
 
@@ -64,6 +65,14 @@ Shape *create_shape(){
     }
     else if (strcmp(buffer, "square") == 0){
         return create_square_shape(1,1,3);
+    }
+    else if (strcmp(buffer, "polygon") == 0){
+        Point **points = malloc(4*sizeof(Point*));
+        points[0] = create_point(1,1);
+        points[1] = create_point(10,1);
+        points[2] = create_point(15,9);
+        points[3] = create_point(11,13);
+        return create_polygon_shape(points, 4);
     }
     else{
         printf("Unknown shape\n");

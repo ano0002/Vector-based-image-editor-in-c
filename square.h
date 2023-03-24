@@ -4,7 +4,7 @@
 #include "point.h"
 
 typedef struct {
-    Point *center;
+    Point *origin;
     int length;
 } Square;
 
