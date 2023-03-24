@@ -16,27 +16,28 @@ int input(){
     else if (strcmp(buffer, "clear") == 0){
         return 2;
     }
-    else if (strcmp(buffer,"plot"))
+    else if (strcmp(buffer,"plot") == 0)
     {
         return 3;
     }
-    else if (strcmp(buffer,"list"))
+    else if (strcmp(buffer,"list") == 0)
     {
         return 4;
     }
-    else if (strcmp(buffer,"erase"))
+    else if (strcmp(buffer,"erase") == 0)
     {
         return 5;
     }
-    else if (strcmp(buffer,"delete"))
+    else if (strcmp(buffer,"delete") == 0)
     {
         return 6;
     }
-    else if (strcmp(buffer,"new"))
+    else if (strcmp(buffer,"new") == 0)
     {
         return 7;
     }
     else{
+        printf("Unknown command\n");
         return input();
     }
 }
