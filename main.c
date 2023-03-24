@@ -14,7 +14,7 @@ void clearscreen() {
 
 int main(void) {
     Shape **L = malloc(1*sizeof(Shape*));
-    L[0] = create_point_shape(1,1);
+    L[0] = create_line_shape(1,1,3,5);
     int LS = 1;
     int i = input();
     while (i != 0)
@@ -87,6 +87,15 @@ int main(void) {
         else if (i == 7)
         {
             printf("New\n");
+            Shape *s = create_shape();
+            if (s == NULL)
+            {
+                printf("Error\n");
+                continue;
+            }
+            L = realloc(L,(LS+1)*sizeof(Shape*));
+            L[LS] = s;
+            LS++;
         }
 
         i = input();
