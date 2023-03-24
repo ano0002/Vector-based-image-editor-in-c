@@ -87,6 +87,15 @@ int main(void) {
         else if (i == 7)
         {
             printf("New\n");
+            Shape *s = create_shape();
+            if (s == NULL)
+            {
+                printf("Error\n");
+                continue;
+            }
+            L = realloc(L,(LS+1)*sizeof(Shape*));
+            L[LS] = s;
+            LS++;
         }
 
         i = input();
