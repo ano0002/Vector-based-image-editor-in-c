@@ -27,6 +27,10 @@ void draw_line(Line *l, char M[SIZE_Y][SIZE_X], char symbol) {
         if (e2 <= dx) { err += dx; y0 += sy; } /* e_xy+e_y < 0 */
     }
     while (x0 != x1 || y0 != y1);
+    
+    Point *p = create_point(x0,y0);
+    draw_point(p, M, symbol);
+    destroy_point(p);
 }
 
 void draw_rectangle(Rectangle *r, char M[SIZE_Y][SIZE_X], char symbol) {
