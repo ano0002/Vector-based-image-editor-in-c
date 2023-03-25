@@ -58,7 +58,7 @@ Shape *create_shape(){
         return create_line_shape(1,1,3,5);
     }
     else if (strcmp(buffer, "circle") == 0){
-        return create_circle_shape(1,1,3);
+        return create_circle_shape(10,10,3);
     }
     else if (strcmp(buffer, "rectangle") == 0){
         return create_rectangle_shape(1,1,3,5);

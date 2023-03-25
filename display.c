@@ -7,7 +7,9 @@
 #define SIZE_Y 30
 
 void draw_point(Point *p, char M[SIZE_Y][SIZE_X], char symbol) {
-    M[p->y][p->x] = symbol;
+    if (p->x>=0 && p->y>=0 ) {
+        M[p->y][p->x] = symbol;
+    }
 }
 
 void draw_line(Line *l, char M[SIZE_Y][SIZE_X], char symbol) {
@@ -48,13 +50,13 @@ void draw_rectangle(Rectangle *r, char M[SIZE_Y][SIZE_X], char symbol) {
     destroy_line(left);
 }
 
-void display_square(Square *s, char M[SIZE_Y][SIZE_X], char symbol) {
+void draw_square(Square *s, char M[SIZE_Y][SIZE_X], char symbol) {
     Rectangle *r = create_rectangle(s->origin->x,s->origin->y,s->length,s->length);
     draw_rectangle(r, M, symbol);
     destroy_rectangle(r);
 }
 
-void display_polygon(Polygon *p, char M[SIZE_Y][SIZE_X], char symbol) {
+void draw_polygon(Polygon *p, char M[SIZE_Y][SIZE_X], char symbol) {
     for (int i=0; i<p->n-1; i++) {
         Line *l = create_line(p->points[i]->x,p->points[i]->y,p->points[i+1]->x,p->points[i+1]->y);
         draw_line(l, M, symbol);
@@ -63,6 +65,50 @@ void display_polygon(Polygon *p, char M[SIZE_Y][SIZE_X], char symbol) {
     Line *l = create_line(p->points[p->n-1]->x,p->points[p->n-1]->y,p->points[0]->x,p->points[0]->y);
     draw_line(l, M, symbol);
     destroy_line(l);
+}
+void draw_circle(Circle *c, char M[SIZE_Y][SIZE_X], char symbol){
+    int x = 0;
+    int y = c->radius;
+    int d = c->radius - 1;
+    while (y>=x){ 
+        Point *p = create_point(c->center->x + x , c->center->y + y);
+        draw_point(p, M, symbol);
+        destroy_point(p);
+        p = create_point(c->center->x + y , c->center->y + x);
+        draw_point(p, M, symbol);
+        destroy_point(p);
+        p = create_point(c->center->x - x , c->center->y + y);
+        draw_point(p, M, symbol);
+        destroy_point(p);
+        p = create_point(c->center->x - y , c->center->y + x);
+        draw_point(p, M, symbol);
+        destroy_point(p);
+        p = create_point(c->center->x + x , c->center->y - y);
+        draw_point(p, M, symbol);
+        destroy_point(p);
+        p = create_point(c->center->x + y , c->center->y - x);
+        draw_point(p, M, symbol);
+        destroy_point(p);
+        p = create_point(c->center->x - x , c->center->y - y);
+        draw_point(p, M, symbol);
+        destroy_point(p);
+        p = create_point(c->center->x - y , c->center->y - x);
+        draw_point(p, M, symbol);
+        destroy_point(p);
+        if (d >= 2*x){ 
+            d = d-2*x-1;
+            x++;
+        }
+        else if (d < 2*(c->radius-y)) {
+            d = d+2*y-1;
+            y = y-1;
+        }
+        else{ 
+            d = d+2*(y-x-1);
+            y = y-1;
+            x = x+1;
+        }
+    }
 }
 
 
@@ -84,18 +130,20 @@ void display(Shape ** L, int SIZE) {
             draw_line(shape->ptrShape, M, symbol);
         }
         
-        else if (shape->shape_type == CIRCLE) {}
+        else if (shape->shape_type == CIRCLE) {
+            draw_circle(shape->ptrShape, M, symbol);
+        }
         
         else if (shape->shape_type == RECTANGLE) {
             draw_rectangle(shape->ptrShape, M, symbol);
         }
         
         else if (shape->shape_type == SQUARE) {
-            display_square(shape->ptrShape, M, symbol);
+            draw_square(shape->ptrShape, M, symbol);
         }
         
         else if (shape->shape_type == POLYGON) {
-            display_polygon(shape->ptrShape, M, symbol);
+            draw_polygon(shape->ptrShape, M, symbol);
         }
     }
 
