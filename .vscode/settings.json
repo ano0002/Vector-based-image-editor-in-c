@@ -4,7 +4,9 @@
         "point.h": "c",
         "stdio.h": "c",
         "shapes.h": "c",
-        "display.h": "c"
+        "display.h": "c",
+        "stdlib.h": "c",
+        "line.h": "c"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }

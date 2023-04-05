@@ -2,6 +2,8 @@
 #define LINE_H
 
 #include "point.h"
+#include <stdlib.h>
+#include <stdio.h>
 
 typedef struct {
     Point *p1;

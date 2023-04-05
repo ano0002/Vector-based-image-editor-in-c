@@ -1,6 +1,6 @@
 #include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "input.h"
 
@@ -43,36 +43,29 @@ int input(){
     }
 }
 
-int startWith(const char *pre, const char *str)
-{
-    size_t lenpre = strlen(pre),
-           lenstr = strlen(str);
-    return lenstr < lenpre ? 0 : strncmp(pre, str, lenpre) == 0;
-}
-
 Shape *create_shape(){
     char buffer[100];
     printf("Enter a shape: ");
     gets(buffer);
-    if (strcmp(buffer, "line") == 0){
-        return create_line_shape(1,1,3,5);
+    if (strncmp(buffer, "line",4) == 0){
+        int x1,y1,x2,y2;
+        sscanf(buffer, "line %d %d %d %d", &x1, &y1, &x2, &y2);
+        return create_line_shape(x1,y1,x2,y2);
     }
-    else if (strcmp(buffer, "circle") == 0){
-        return create_circle_shape(10,10,3);
+    else if (strncmp(buffer, "circle",6) == 0){
+        int x,y,r;
+        sscanf(buffer, "circle %d %d %d", &x, &y, &r);
+        return create_circle_shape(x,y,r);
     }
-    else if (strcmp(buffer, "rectangle") == 0){
-        return create_rectangle_shape(1,1,3,5);
+    else if (strncmp(buffer, "rectangle",9) == 0){
+        int x,y,w,h;
+        sscanf(buffer, "rectangle %d %d %d %d", &x, &y, &w, &h);
+        return create_rectangle_shape(x,y,w,h);
     }
-    else if (strcmp(buffer, "square") == 0){
-        return create_square_shape(1,1,3);
-    }
-    else if (strcmp(buffer, "polygon") == 0){
-        Point **points = malloc(4*sizeof(Point*));
-        points[0] = create_point(1,1);
-        points[1] = create_point(10,1);
-        points[2] = create_point(15,9);
-        points[3] = create_point(11,13);
-        return create_polygon_shape(points, 4);
+    else if (strncmp(buffer, "square",6) == 0){
+        int x,y,s;
+        sscanf(buffer, "square %d %d %d", &x, &y, &s);
+        return create_square_shape(x,y,s);
     }
     else{
         printf("Unknown shape\n");
