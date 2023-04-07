@@ -8,10 +8,12 @@
 
 Polygon *create_polygon(Point **points, int n){
     Polygon *polygon = malloc(sizeof(Polygon));
+    /*
     if (n%2){
         printf("Error: n must be even");
         return NULL;
     }
+    */
     polygon->n = n;
     polygon->points = malloc(n*sizeof(Point*));
     for (int i = 0; i < n; i++){

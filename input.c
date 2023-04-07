@@ -44,7 +44,7 @@ int input(){
 }
 
 Shape *create_shape(){
-    char buffer[100];
+    char* buffer = malloc(1000*sizeof(char));
     printf("Enter a shape: ");
     gets(buffer);
     if (strncmp(buffer, "line",4) == 0){
@@ -66,6 +66,32 @@ Shape *create_shape(){
         int x,y,s;
         sscanf(buffer, "square %d %d %d", &x, &y, &s);
         return create_square_shape(x,y,s);
+    }
+    else if (strncmp(buffer, "polygon",7) == 0){
+        buffer += 7;
+        const char *p = buffer;
+        int n;
+        int x,y;
+        int count = 0;
+        int temp;
+        Point **points = malloc(0);
+        while (sscanf(p, "%d%n", &temp, &n) == 1) {
+            p += n;
+            
+            if (count % 2 == 0){
+                x = temp;
+            }
+            else{
+                y = temp;
+                Point* my_point = create_point(x,y);
+                printf("Point : %d %d\n", my_point->x, my_point->y);
+                points = realloc(points, (count/2 + 1) * sizeof(Point*));
+                points[count/2] = my_point;
+            }
+
+            count++;
+        }
+        return create_polygon_shape(points, count/2);
     }
     else{
         printf("Unknown shape\n");
