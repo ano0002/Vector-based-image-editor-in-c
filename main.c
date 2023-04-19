@@ -104,14 +104,14 @@ int main(void) {
                    "  is width and whose height is height\n"
                    "- polygon x1 y1 x2 y2 x3 y3 .. .. : add a polygon with the list of given points\n\n");
             Shape *s = create_shape();
-            L = realloc(L,(LS+1)*sizeof(Shape*));
-            L[LS] = s;
-            LS++;
             if (s == NULL) {
                 printf("Error\n");
                 continue;
             }
             else {
+                L = realloc(L,(LS+1)*sizeof(Shape*));
+                L[LS] = s;
+                LS++;
                 display(L,LS);
             }
         }
