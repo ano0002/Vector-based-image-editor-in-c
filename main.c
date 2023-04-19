@@ -15,20 +15,30 @@ void clearscreen() {
 int main(void) {
     Shape **L = malloc(0*sizeof(Shape*));
     int LS = 0;
+    //display(L,LS);
+    printf("========= Help =========\n"
+           "new : create a new shape\n"
+           "delete : delete a shape\n"
+           "list : list all shapes\n"
+           "erase : erase all shapes\n"
+           "plot : plot the grid\n"
+           "clear : clear the terminal\n"
+           "exit : quit the program\n"
+           "\n");
     int i = input();
     while (i != 0)
     {
         if (i == 1) //display help
         {
-            printf("=====================\nHelp\n=====================\n");
-            printf("exit : quit the program\n");
-            printf("help : display this message\n");
-            printf("clear : clear the terminal\n");
-            printf("plot : plot all shapes\n");
-            printf("list : list all shapes\n");
-            printf("erase : erase all shapes\n");
-            printf("delete : delete a shape\n");
-            printf("new : create a new shape\n");
+            printf("\n========= Help =========\n"
+                   "new : create a new shape\n"
+                   "delete : delete a shape\n"
+                   "list : list all shapes\n"
+                   "erase : erase all shapes\n"
+                   "plot : plot the grid\n"
+                   "clear : clear the terminal\n"
+                   "exit : quit the program\n"
+                   "\n");
         }
         else if (i == 2) //clear terminal
         {
@@ -85,16 +95,25 @@ int main(void) {
         }
         else if (i == 7)
         {
-            printf("New\n");
+            printf("\n========= Shapes =========\n"
+                   "- point x y : add a point\n"
+                   "- line x1 y1 x2 y2 : add a segment connecting two points (x1, y1) and (x2, y2)\n"
+                   "- circle x y radius : add a circle of centre (x, y) and a radius radius\n"
+                   "- square x y length : add a square whose upper left corner is (x, y) and whose side is length.\n"
+                   "- rectangle x y width height : add a rectangle whose upper left corner is (x, y), whose width\n"
+                   "  is width and whose height is height\n"
+                   "- polygon x1 y1 x2 y2 x3 y3 .. .. : add a polygon with the list of given points\n\n");
             Shape *s = create_shape();
-            if (s == NULL)
-            {
-                printf("Error\n");
-                continue;
-            }
             L = realloc(L,(LS+1)*sizeof(Shape*));
             L[LS] = s;
             LS++;
+            if (s == NULL) {
+                printf("Error\n");
+                continue;
+            }
+            else {
+                display(L,LS);
+            }
         }
 
         i = input();

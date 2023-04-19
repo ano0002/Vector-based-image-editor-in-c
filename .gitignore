@@ -1,2 +1,9 @@
 
 output/main.exe
+cmake-build-debug/*
+CMakeLists.txt
+.idea/Vector-based-image-editor-in-c.iml
+.idea/vcs.xml
+.idea/modules.xml
+.idea/misc.xml
+.idea/.name

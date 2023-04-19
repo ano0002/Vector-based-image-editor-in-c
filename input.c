@@ -6,7 +6,7 @@
 
 int input(){
     char buffer[100];
-    printf("Enter a command: ");
+    printf("\nEnter a command: ");
     gets(buffer);
     if (strcmp(buffer, "exit") == 0){
         return 0;
@@ -47,7 +47,12 @@ Shape *create_shape(){
     char* buffer = malloc(1000*sizeof(char));
     printf("Enter a shape: ");
     gets(buffer);
-    if (strncmp(buffer, "line",4) == 0){
+    if (strncmp(buffer, "point",5) == 0){
+        int x,y;
+        sscanf(buffer, "point %d %d", &x, &y);
+        return create_point_shape(x,y);
+    }
+    else if (strncmp(buffer, "line",4) == 0){
         int x1,y1,x2,y2;
         sscanf(buffer, "line %d %d %d %d", &x1, &y1, &x2, &y2);
         return create_line_shape(x1,y1,x2,y2);
@@ -84,7 +89,7 @@ Shape *create_shape(){
             else{
                 y = temp;
                 Point* my_point = create_point(x,y);
-                printf("Point : %d %d\n", my_point->x, my_point->y);
+                //printf("Point : %d %d\n", my_point->x, my_point->y);
                 points = realloc(points, (count/2 + 1) * sizeof(Point*));
                 points[count/2] = my_point;
             }
