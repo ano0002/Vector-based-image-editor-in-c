@@ -5,10 +5,10 @@
 
 Square *create_square(int x, int y, int length)
 {
-    Square *sq = (Square *) malloc(sizeof(Square));
-    sq->origin = create_point(x, y);
-    sq->length = length;
-    return sq;
+    Square *sq = (Square *) malloc(sizeof(Square)); // allocate memory for the square
+    sq->origin = create_point(x, y); // create the point and assign it to the square
+    sq->length = length; // set the length
+    return sq; // return the square
 }
 
 void print_square(Square *square)
@@ -18,6 +18,7 @@ void print_square(Square *square)
 
 void destroy_square(Square *square)
 {
-    destroy_point(square->origin);
+    // destroy the point and free the memory allocated for the square
+    destroy_point(square->origin); 
     free(square);
 }
