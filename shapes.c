@@ -10,7 +10,7 @@
 #include "square.h"
 #include "polygon.h"
 
-int id = 0;
+unsigned int global_id = 0;
 
 Shape *create_empty_shape(SHAPE_TYPE shape_type)
 {
@@ -126,7 +126,7 @@ void delete_shape(Shape *shape){
 }
 
 int get_next_id(){
-    id ++;
-    return id;
+    global_id ++;
+    return global_id;
 }
 
