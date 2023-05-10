@@ -13,9 +13,8 @@ void clearscreen() {
 
 
 int main(void) {
-    Shape **L = malloc(0*sizeof(Shape*));
-    int LS = 0;
-    //display(L,LS);
+    Shape **L = malloc(0*sizeof(Shape*)); //list of shapes
+    int LS = 0; //length of the list
     printf("========= Help =========\n"
            "new : create a new shape\n"
            "delete : delete a shape\n"
@@ -51,7 +50,7 @@ int main(void) {
         else if (i == 4) //list all shapes
         {
             printf("List :\n");
-            if (LS == 0)
+            if (LS == 0) //if list is empty
             {
                 printf("Empty\n");
             }
@@ -118,34 +117,6 @@ int main(void) {
 
         i = input();
     }
-
-    /*
-    //clearscreen();
-    Shape *point = create_point_shape(2,2);
-    print_shape(point);
-    delete_shape(point);
-
-    Shape *line = create_line_shape(1,1,6,5);
-    print_shape(line);
-    delete_shape(line);
-
-    Shape *circle = create_circle_shape(1,1,5);
-    print_shape(circle);
-    delete_shape(circle);
-
-    Shape *rectangle = create_rectangle_shape(1,1,5,5);
-    print_shape(rectangle);
-    delete_shape(rectangle);
-
-    Shape *square = create_square_shape(1,1,5);
-    print_shape(square);
-    delete_shape(square);
-
-    Point *points[2] = {create_point(1,1),create_point(6,5)};
-    Shape *polygon = create_polygon_shape(points,2);
-    print_shape(polygon);
-    delete_shape(polygon);
-    */
     
     return 0;
 }
