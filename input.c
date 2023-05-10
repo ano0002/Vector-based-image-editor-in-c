@@ -7,7 +7,7 @@
 int input(){
     char buffer[100];
     printf("\nEnter a command: ");
-    gets(buffer);
+    gets(buffer); // read the command from the user then return the command number
     if (strcmp(buffer, "exit") == 0){
         return 0;
     }
@@ -89,7 +89,6 @@ Shape *create_shape(){
             else{
                 y = temp;
                 Point* my_point = create_point(x,y);
-                //printf("Point : %d %d\n", my_point->x, my_point->y);
                 points = realloc(points, (count/2 + 1) * sizeof(Point*));
                 points[count/2] = my_point;
             }

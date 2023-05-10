@@ -8,7 +8,7 @@
 
 void draw_point(Point *p, char M[SIZE_Y][SIZE_X], char symbol) {
     if (p->x>=0 && p->y>=0 ) {
-        M[p->y][p->x] = symbol;
+        M[p->y][p->x] = symbol; // set the point in the matrix to the symbol
     }
 }
 
@@ -31,13 +31,14 @@ void draw_line(Line *l, char M[SIZE_Y][SIZE_X], char symbol) {
     while (x0 != x1 || y0 != y1);
     
     Point *p = create_point(x0,y0);
-    draw_point(p, M, symbol);
-    destroy_point(p);
+    draw_point(p, M, symbol); // draw the last point
+    destroy_point(p); // free the memory
 }
 
 void draw_rectangle(Rectangle *r, char M[SIZE_Y][SIZE_X], char symbol) {
+    // draw the four lines of the rectangle
     Line *top = create_line(r->point->x,r->point->y,r->point->x+r->width,r->point->y);
-    Line *right = create_line(r->point->x+r->width,r->point->y,r->point->x+r->width,r->point->y+r->height);
+    Line *right = create_line(r->point->x+r->width,r->point->y,r->point->x+r->width,r->point->y+r->height); 
     Line *bottom = create_line(r->point->x,r->point->y+r->height,r->point->x+r->width,r->point->y+r->height);
     Line *left = create_line(r->point->x,r->point->y,r->point->x,r->point->y+r->height);
     draw_line(top, M, symbol);
@@ -51,22 +52,26 @@ void draw_rectangle(Rectangle *r, char M[SIZE_Y][SIZE_X], char symbol) {
 }
 
 void draw_square(Square *s, char M[SIZE_Y][SIZE_X], char symbol) {
+    // draw a rectangle with the same length and width
     Rectangle *r = create_rectangle(s->origin->x,s->origin->y,s->length,s->length);
     draw_rectangle(r, M, symbol);
     destroy_rectangle(r);
 }
 
 void draw_polygon(Polygon *p, char M[SIZE_Y][SIZE_X], char symbol) {
+    // draw the lines between the points
     for (int i=0; i<p->n-1; i++) {
-        Line *l = create_line(p->points[i]->x,p->points[i]->y,p->points[i+1]->x,p->points[i+1]->y);
-        draw_line(l, M, symbol);
-        destroy_line(l);
+        Line *l = create_line(p->points[i]->x,p->points[i]->y,p->points[i+1]->x,p->points[i+1]->y);// create the line
+        draw_line(l, M, symbol);// draw the line
+        destroy_line(l);// free the memory
     }
+    // draw the last line between the last point and the first point
     Line *l = create_line(p->points[p->n-1]->x,p->points[p->n-1]->y,p->points[0]->x,p->points[0]->y);
     draw_line(l, M, symbol);
-    destroy_line(l);
+    destroy_line(l);// free the memory
 }
 void draw_circle(Circle *c, char M[SIZE_Y][SIZE_X], char symbol){
+    // draw the circle using Andres's algorithm
     int x = 0;
     int y = c->radius;
     int d = c->radius - 1;
@@ -113,12 +118,13 @@ void draw_circle(Circle *c, char M[SIZE_Y][SIZE_X], char symbol){
 
 
 void display(Shape ** L, int SIZE) {
+    // create the matrix and fill it with '.'
     char M[SIZE_Y][SIZE_X];
     for(int i=0; i<SIZE_Y; i++)  for(int j=0; j<SIZE_X; j++)  M[i][j] = '.';
-    char symbol = '#';
+    char symbol = '#';// the symbol to draw the shapes
 
 
-
+    // for each shape, draw it depending on its type
     for (int i=0; i<SIZE; i++) {
         Shape *shape = L[i];
 
@@ -147,6 +153,7 @@ void display(Shape ** L, int SIZE) {
         }
     }
 
+    // print the matrix
     for(int i=0; i<SIZE_Y; i++) {
         for(int j=0; j<SIZE_X; j++) printf("%c", M[i][j]);
         printf("\n");
