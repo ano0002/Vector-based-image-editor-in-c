@@ -1,10 +1,10 @@
-First open the terminal in the OUTPUT folder and type the following command:
+HOW TO RUN THE EDITOR:
 
-```bash
-cd ..;gcc main.c shapes.c point.c line.c circle.c square.c rectangle.c polygon.c input.c display.c -o ".\output\main.exe"; cd output; ./main.exe
-```
+With a compiler:
+ - Open the terminal in the OUTPUT folder
+ - type the following command: "cd ..;gcc main.c shapes.c point.c line.c circle.c square.c rectangle.c polygon.c input.c display.c -o ".\output\main.exe"; cd output; ./main.exe"
+ - The program should compiled and run.
 
-It should compile and run the program.
-
-
-OR go in the folder "Vector-based-image-editor-in-c\cmake-build-debug" and run "Vector_based_image_editor_in_c.exe"
+Without a compiler:
+ - Open the folder "Vector-based-image-editor-in-c\cmake-build-debug"
+ - Run "Vector_based_image_editor_in_c.exe"
