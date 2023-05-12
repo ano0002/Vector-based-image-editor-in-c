@@ -49,10 +49,10 @@ int main(void) {
         }
         else if (i == 4) //list all shapes
         {
-            printf("List :\n");
+            printf("List of shapes :\n");
             if (LS == 0) //if list is empty
             {
-                printf("Empty\n");
+                printf("No shapes in list\n");
             }
             else{
                 for (int j = 0; j < LS; j++)
@@ -71,10 +71,23 @@ int main(void) {
             free(L);
             L = malloc(0*sizeof(Shape*));
             LS = 0;
+            display(L,LS);
         }
         else if (i == 6)
         {
-            printf("With what id ?\n");
+            //list all shapes
+            printf("List of shapes :\n");
+            if (LS == 0) //if list is empty
+            {
+                printf("No shapes in list\n");
+            }
+            else{
+                for (int j = 0; j < LS; j++)
+                {
+                    print_shape(L[j]);
+                }
+            }
+            printf("\nWhat shape do you want to delete? (enter id) \n");
             int id;
             scanf("%d",&id);
             for (int j = 0; j < LS; j++)
@@ -91,6 +104,7 @@ int main(void) {
                     break;
                 }
             }
+            display(L,LS);
         }
         else if (i == 7)
         {

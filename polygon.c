@@ -32,7 +32,7 @@ void destroy_polygon(Polygon * polygon){
 
 void print_polygon(Polygon * polygon){
     printf("Polygon: n=%d, points=[", polygon->n); // print the number of points
-    for (int i = 0; i < polygon->n; i++){ >//for each point
+    for (int i = 0; i < polygon->n; i++){ //for each point
         printf("(%d,%d)", polygon->points[i]->x, polygon->points[i]->y); // print the point
         if (i != polygon->n-1){
             printf(", ");
