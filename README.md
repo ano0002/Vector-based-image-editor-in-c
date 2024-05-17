@@ -12,4 +12,4 @@ When running the code, write ```help``` to get a list of all the available comma
   cd output;
   ./main.exe
   ```
-- The program should compiled and run.
+- The program should compile and run.
